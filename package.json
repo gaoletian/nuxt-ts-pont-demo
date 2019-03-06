@@ -8,6 +8,11 @@
     "build": "nuxt build",
     "generate": "nuxt generate"
   },
+  "husky": {
+    "hooks": {
+      "post-merge": "yarn"
+    }
+  },
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
     "@nuxtjs/babel-preset-app": "^0.8.0",
@@ -19,6 +24,7 @@
     "@types/node": "^10.12.2",
     "canvas-datagrid": "^0.22.1",
     "file-saver": "^2.0.0",
+    "husky": "^1.3.1",
     "less": "^3.8.0",
     "less-loader": "^4.1.0",
     "lodash-decorators": "^6.0.0",
