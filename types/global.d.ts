@@ -29,4 +29,6 @@ declare namespace NodeJS {
   }
 }
 
+type apitype = typeof API;
+
 declare var XLSX;

@@ -8,7 +8,7 @@
       <v-btn flat icon @click.stop="toggleFullScreen" color="primary">
         <v-icon>fullscreen</v-icon>
       </v-btn>
-      <v-btn flat icon @click.stop="dark = !dark" color="primary">
+      <v-btn flat icon @click.stop="$store.commit('setDark')" color="primary">
         <v-icon>color_lens</v-icon>
       </v-btn>
       <v-menu
@@ -106,7 +106,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
-import { State, Getter } from 'vuex-class';
+import { State, Getter, Action, Mutation } from 'vuex-class';
 import { menuConfig } from '~/config/menu.config';
 import * as screenfull from 'screenfull';
 
@@ -118,7 +118,10 @@ export default class extends Vue {
   roles;
 
   drawer = true;
-  dark = false;
+
+  @State
+  dark;
+
   mini = false;
   menu = menuConfig();
 

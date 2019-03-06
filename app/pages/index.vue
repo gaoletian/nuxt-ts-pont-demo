@@ -1,5 +1,3 @@
-
-
 <script lang="tsx">
 import { Component, Vue, State, Action } from 'nuxt-property-decorator';
 import { mixins } from 'vue-class-component';
@@ -16,10 +14,11 @@ export default class HomePage extends Vue {
   @State
   currentStatus;
 
-  @Action getPets;
+  @Action getPets: (status: string) => void;
 
   page = 1;
   pageSize = 40;
+
   get pageCount() {
     return Math.ceil(this.pets.length / this.pageSize);
   }
@@ -48,7 +47,7 @@ export default class HomePage extends Vue {
           : require(`~/assets/imgs/pets/${index % 6}.jpeg`);
 
       return (
-        <v-flex xs3 key={pet.id}>
+        <v-flex xs3 key={pet.name + index}>
           <v-card tile class="pa-2">
             <v-img src={photoUrls}>
               <v-layout align-end fill-height pa-3 white--text>
