@@ -206,13 +206,14 @@ export class FileStructures extends pont.FileStructures {
     return `
       ${dsNames
         .map(name => {
-          return `import { ${name} } from './${name}';
-          `;
+          return `import { ${name} } from './${name}';`;
         })
         .join('\n')}
-      export const API = {
-        ${dsNames.join(',\n')}
-      };
+      import ApiType from './api';
+
+      export type apitype = typeof ApiType;
+      export const API = {${dsNames.join(',')}};
+      
     `;
   }
 }
