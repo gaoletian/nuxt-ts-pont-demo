@@ -7137,6 +7137,11 @@ vuex-class@^0.3.0, vuex-class@^0.3.1:
   resolved "https://registry.yarnpkg.com/vuex-class/-/vuex-class-0.3.1.tgz#3c0b946bcff4cf2be1904de5b0cab1a3dd5c41d5"
   integrity sha512-d7Hc+ItQx6p9E/2mEWiyrvyEuo7Uj0mq4VNImd7dmxTelnkhOavKPMEG1Xdypug2RlPEYv0920IOa3hdVZ+4AA==
 
+vuex-module-decorators@^0.9.8:
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/vuex-module-decorators/-/vuex-module-decorators-0.9.8.tgz#760c63fc5358fb2f3170a5428181a4549adc91ce"
+  integrity sha512-yyh9+0mO7NYZxw5BlXWNA/lHioVOUL0muDpJPL9ssAvje2PHQfFSOCSridK4vA3HasjyaGRtTPJKH7+7UCcpwg==
+
 vuex@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.0.tgz#634b81515cf0cfe976bd1ffe9601755e51f843b9"
