@@ -4,7 +4,7 @@ const api = <apitype>API;
 
 // @Module({ stateFactory: true })
 @Module
-class Root extends VuexModule {
+export default class Root extends VuexModule {
   pets: API.petstore.Pet[] = [];
   currentStatus: 'sold' | 'pending' = 'sold';
   whell = 1;
@@ -36,8 +36,3 @@ class Root extends VuexModule {
     };
   }
 }
-
-// export default getModule(Root);
-// console.log('================================\n', new Root({}));
-
-export default Root;
