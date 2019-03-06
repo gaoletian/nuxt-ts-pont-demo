@@ -28,7 +28,3 @@ declare namespace NodeJS {
     modern: boolean;
   }
 }
-
-type apitype = typeof API;
-
-declare var XLSX;
