@@ -82,7 +82,7 @@ app
   - 将 `window.API` 更改为 `export const API`
   - 删除 defs
 - **`api/petstore/mods/*/*.ts`**
-- 目标源名称作为前辍合并到接口`url`中，代理时根据前辍进行代理配置
+  - 目标源名称作为前辍合并到接口`url`中，代理时根据前辍进行代理配置
 
 ### proxy.config.ts
 
