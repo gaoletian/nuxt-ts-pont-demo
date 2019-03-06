@@ -169,7 +169,7 @@ export default class extends Vue {
       this.$store.commit('SET_USER', null);
       await this.$axios.$post('/api/auth/logout');
       const service = encodeURIComponent(`${protocol}//${host}`);
-      window.location.assign(`${protocol}//${host}/api/puhui-cas/logout?service=${service}`);
+      window.location.assign(`${protocol}//${host}/api/cas/logout?service=${service}`);
     }
   }
 }
