@@ -1,4 +1,6 @@
-# nuxt-ts-pont
+# nuxt-ts-pont-demo
+
+![](docs/imgs/demo.gif)
 
 ## 目录说明
 
@@ -167,4 +169,4 @@ export default class extends Vue {
 }
 ```
 
-![](docs/imgs2019-03-05-23-22-35.png)
+![](docs/imgs/2019-03-05-23-22-35.png)
