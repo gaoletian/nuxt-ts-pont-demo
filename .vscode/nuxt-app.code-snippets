@@ -1,0 +1,111 @@
+{
+	"nuxt-vuex-module": {
+		"prefix": "vuex-module-snippet",
+		"body": [
+			"// state",
+			"export const state = () => ({",
+			"})",
+			"// getters",
+			"export const getters = {",
+			"}",
+			"// mutations",
+			"export const mutations = {}",
+			"",
+			"// actions",
+			"export const actions = {}"
+		],
+		"description": "nuxt-module"
+	},
+
+	"created hook": {
+		"prefix": "hook",
+		"body": [
+			"${1|beforeCreate,created,beforeMount,mounted,beforeUpdate,updated,beforeDestroy,destroyed,activated,deactivated|}() {",
+			"\t$0",
+			"}",
+		],
+		"description": "created hook"
+	},
+
+	"mounted hook": {
+		"prefix": "mounted",
+		"body": [
+			"${1|mounted,created,destroyed,render,updated,beforeCreate,beforeMount,beforeDestroy,beforeUpdate|}() {",
+			"\t$0",
+			"}",
+		],
+		"description": "mounted hook"
+	},
+	"render hook": {
+		"prefix": "render",
+		"body": [
+			"render(h: CreateElement) {",
+			"\t$0",
+			"}",
+		],
+		"description": "mounted hook"
+	},
+	"create method": {
+		"prefix": "method",
+		"body": [
+			"${1:methodName}() {",
+			"\t$0",
+			"}",
+		],
+		"description": "创建组件方法"
+	},
+
+	"computed prop": {
+		"prefix": "computedProp",
+		"body": [
+			"// 计算属性",
+			"get ${1:computedProp}() {",
+			"\treturn $0",
+			"}",
+		],
+		"description": "创建计算属性"
+	},
+	"script with typescript nuxt": {
+		"prefix": "script with Typescript nuxt",
+		"body": [
+			"<script lang=\"ts\">",
+			"import { Component, Vue } from \"nuxt-property-decorator\";",
+			"import { mixins } from \"vue-class-component\";",
+			"@Component({",
+			"  // layout: 'default'",
+			"})",
+			"export default class extends Vue {",
+			"  ",
+			"}",
+			"</script>",
+			""
+		],
+		"description": "nuxt page"
+	},
+	"vuetify class elevation": {
+		"prefix": "elevation",
+		"scope": "vue-html",
+		"body": [
+			"${1:elevation-1}",
+		],
+		"description": "vuetify class elevation"
+	},
+	"nuxt plugin snippet": {
+		"prefix": "nuxtPluginTs",
+		"body": [
+			"// enable middleware you must setup pulgins at nuxt.config.js ",
+			"export default <Nuxt.Plugin>function (ctx, inject) {",
+			"}"
+		],
+		"description": "nuxt plugin snippet"
+	},
+	"nuxt middleware snippet": {
+		"prefix": "nuxtMiddlewareTs",
+		"body": [
+			"// enable middleware you must setup router's middleware at nuxt.config.js or app/pages/*.vue ",
+			"export default <Nuxt.MiddleWare>function (ctx) {",
+			"}"
+		],
+		"description": "nuxt middleware snippet"
+	}
+}

@@ -1,0 +1,113 @@
+// vuetify css 调整
+
+.custom--theme {
+	// .v-toolbar {
+	// 	background: transparent !important;
+	// }
+
+	.v-list__tile--active {
+		background-color: #4caf50 !important;
+		box-shadow: 0 12px 20px -10px rgba(76, 175, 80, .28), 0 4px 20px 0 rgba(0, 0, 0, .12),
+			0 7px 8px -5px rgba(76, 175, 80, .2);
+		color: white !important;
+	}
+
+	.v-navigation-drawer {
+		background: url(theme/sidebar-3.jpg);
+		background-position: 50%;
+		background-size: cover;
+
+		.v-list {
+			background: transparent !important;
+		}
+
+		&:after {
+			content: "";
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: rgba(0, 0, 0, 0.87);
+			opacity: 0.9;
+			z-index: -2;
+		}
+	}
+
+	// form input
+
+	.theme--light.v-text-field .v-input__slot:before {
+		border-color: rgba(0, 0, 0, 0.116);
+	}
+}
+
+.bounce-enter-active {
+	animation: bounce-in .8s;
+}
+
+.bounce-leave-active {
+	animation: bounce-out .5s;
+}
+
+@keyframes bounce-in {
+	0% {
+		transform: scale(0);
+	}
+
+	50% {
+		transform: scale(1.5);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes bounce-out {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.5);
+	}
+
+	100% {
+		transform: scale(0);
+	}
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+	opacity: 0;
+	transform: translate(30px, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+	opacity: 0;
+	transform: translate(-30px, 0);
+}
+
+.v-btn {
+	min-width: 60px;
+}
+
+
+
+// Keyframe animation
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		top: 100px;
+	}
+
+	75% {
+		opacity: 0.5;
+		top: 0px;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
