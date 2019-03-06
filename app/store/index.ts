@@ -1,43 +1,43 @@
-import { Module, Mutation, Action, VuexModule } from 'vuex-module-decorators';
+import { getModule, Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-module-decorators';
 import { API, apitype } from '~/api';
 const api = <apitype>API;
 
+// @Module({ stateFactory: true })
 @Module
-export default class extends VuexModule {
+class Root extends VuexModule {
   pets: API.petstore.Pet[] = [];
   currentStatus: 'sold' | 'pending' = 'sold';
   whell = 1;
   dark = false;
 
   @Mutation
-  setPets(payload: any) {
-    this.pets = payload;
-  }
-
-  @Mutation
-  setCurrentStatus(status: any) {
-    this.currentStatus = status;
-  }
-  @Mutation
   setDark() {
     this.dark = !this.dark;
   }
 
-  // todo nuxtServerInit has proplem
-  // @Action
-  // async nuxtServerInit({ commit }, ctx: Nuxt.Context) {
-  //   if (!ctx.route || !ctx.route.name) return;
-
-  //   // try {
-  //   //   // let pets = await ctx.$api.petstore.pet.findPetsByStatus.request({ status: 'sold' });
-  //   //   this.context.commit('setPets', [1, 2]);
-  //   // } catch (err) {}
-  // }
-
+  // Defining a store by object and class is very different,
+  // 1. in here nuxtServerInit first param is nuxt context,
+  // 2. commit and dispath are encapsulated in this.context
+  // 3. we can call other action just add await
   @Action
+  async nuxtServerInit(ctx: Nuxt.Context) {
+    if (!ctx.route || !ctx.route.name) return;
+    try {
+      await this.context.dispatch('getPets', 'sold');
+    } catch (err) {}
+  }
+
+  @MutationAction
   async getPets(status: any) {
     let pets = await api.petstore.pet.findPetsByStatus.request({ status });
-    this.context.commit('setPets', pets);
-    this.context.commit('setCurrentStatus', status);
+    return {
+      pets,
+      currentStatus: status
+    };
   }
 }
+
+// export default getModule(Root);
+// console.log('================================\n', new Root({}));
+
+export default Root;
