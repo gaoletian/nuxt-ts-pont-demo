@@ -2,7 +2,6 @@ import { getModule, Module, Mutation, MutationAction, Action, VuexModule } from 
 import { API, apitype } from '~/api';
 const api = <apitype>API;
 
-// @Module({ stateFactory: true })
 @Module
 export default class extends VuexModule {
   dark = false;
