@@ -1,7 +1,7 @@
 import { Vue } from 'nuxt-property-decorator';
 import { Route } from 'vue-router';
 import '@nuxt/vue-app/types';
-import API from '~/api/api';
+import { apitype } from '~/api';
 
 interface VuetifyConfirm {
   (msg: string): Promise<boolean>;
@@ -12,7 +12,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $confirm: VuetifyConfirm;
     $axios: Nuxt.AxiosInstance;
-    $api: typeof API;
+    $api: apitype;
   }
 }
 
