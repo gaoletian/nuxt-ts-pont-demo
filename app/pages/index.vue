@@ -1,20 +1,25 @@
 <script lang="tsx">
-import { Component, Vue, State, Action } from 'nuxt-property-decorator';
+import { Component, Vue, State, Action, namespace } from 'nuxt-property-decorator';
 import { mixins } from 'vue-class-component';
 import { Catch, Throttle } from '~/libs/decorators';
+
+const mod = namespace('home');
+
 @Component({
-  layout: 'console'
-  // async asyncData(ctx) {
-  // }
+  layout: 'console',
+  async asyncData(ctx) {
+    // when page first open or refresh call home/getPets Action
+    !ctx.store.state.home.pets.length && (await ctx.store.dispatch('home/getPets', 'pending'));
+  }
 })
 export default class HomePage extends Vue {
-  @State
+  @mod.State
   pets: API.petstore.Pet[];
 
-  @State
+  @mod.State
   currentStatus;
 
-  @Action getPets: (status: string) => void;
+  @mod.Action getPets: (status: string) => void;
 
   page = 1;
   pageSize = 40;
@@ -25,9 +30,8 @@ export default class HomePage extends Vue {
 
   status = ['pending', 'sold'];
 
-  mounted() {
-    !this.pets.length && this.getPets('sold');
-  }
+  // only run at client
+  mounted() {}
 
   render() {
     const btns = this.status.map(item => {

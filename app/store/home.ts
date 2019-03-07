@@ -5,11 +5,8 @@ const api = <apitype>API;
 // @Module({ stateFactory: true })
 @Module
 export default class extends VuexModule {
-  dark = false;
-  @Mutation
-  setDark() {
-    this.dark = !this.dark;
-  }
+  pets: API.petstore.Pet[] = [];
+  currentStatus: 'sold' | 'pending' = 'sold';
 
   // Defining a store by object and class is very different,
   // 1. in here nuxtServerInit first param is nuxt context,
@@ -19,9 +16,18 @@ export default class extends VuexModule {
   async nuxtServerInit(ctx: Nuxt.Context) {
     if (!ctx.route || !ctx.route.name) return;
     try {
-      // so you dosomeing here when fist open or page refresh
-      // like get user info
-      // await this.context.dispatch('getPets', 'sold');
+      await this.context.dispatch('getPets', 'sold');
+
+      console.log('===========> home / nuxtServerInit');
     } catch (err) {}
+  }
+
+  @MutationAction
+  async getPets(status: any) {
+    let pets = await api.petstore.pet.findPetsByStatus.request({ status });
+    return {
+      pets,
+      currentStatus: status
+    };
   }
 }
