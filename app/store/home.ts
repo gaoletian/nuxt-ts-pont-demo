@@ -8,19 +8,10 @@ export default class extends VuexModule {
   pets: API.petstore.Pet[] = [];
   currentStatus: 'sold' | 'pending' = 'sold';
 
-  // Defining a store by object and class is very different,
-  // 1. in here nuxtServerInit first param is nuxt context,
-  // 2. commit and dispath are encapsulated in this.context
-  // 3. we can call other action just add await
-  @Action
-  async nuxtServerInit(ctx: Nuxt.Context) {
-    if (!ctx.route || !ctx.route.name) return;
-    try {
-      await this.context.dispatch('getPets', 'sold');
-
-      console.log('===========> home / nuxtServerInit');
-    } catch (err) {}
-  }
+  // nuxt call nuxtServerInit only in store/index.ts, so we don't need it here
+  // @Action
+  // async nuxtServerInit(ctx: Nuxt.Context) {
+  // }
 
   @MutationAction
   async getPets(status: any) {
