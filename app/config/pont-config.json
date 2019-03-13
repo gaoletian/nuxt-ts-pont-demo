@@ -4,10 +4,6 @@
     "originUrl": "https://petstore.swagger.io/v2/swagger.json",
     "name": "petstore",
     "usingMultipleOrigins": true
-  }, {
-    "originUrl": "https://petstore.swagger.io/v2/swagger.json",
-    "name": "petstore2",
-    "usingMultipleOrigins": true
   }],
   "templatePath": "./pont-template-nuxt"
 }

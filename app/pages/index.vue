@@ -9,12 +9,16 @@ const mod = namespace('home');
   layout: 'console',
   async asyncData(ctx) {
     // when page first open or refresh call home/getPets Action
-    !ctx.store.state.home.pets.length && (await ctx.store.dispatch('home/getPets', 'pending'));
+    if (!ctx.store.state.home.pets.length) {
+      process.server
+        ? await ctx.store.dispatch('home/getPets', 'pending')
+        : ctx.store.dispatch('home/getPets', 'pending');
+    }
   }
 })
 export default class HomePage extends Vue {
   @mod.State
-  pets: API.petstore.Pet[];
+  pets: defs.petstore.Pet[];
 
   @mod.State
   currentStatus;

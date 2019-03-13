@@ -37,13 +37,13 @@
             </v-list-tile>
             <v-divider></v-divider>
             <div class="pa-3 pt-0">
-              <v-chip
+              <!-- <v-chip
                 color="pink"
                 text-color="white"
                 v-for="role in roles"
                 :key="role"
                 @click="$store.commit('RESET_ROLES_TEST', role)"
-              >{{role}}</v-chip>
+              >{{role}}</v-chip>-->
             </div>
           </v-list>
           <v-divider></v-divider>

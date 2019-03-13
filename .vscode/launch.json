@@ -3,20 +3,38 @@
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [{
-        "name": "Nuxt Debug",
-        "type": "node",
-        "request": "launch",
-        "cwd": "${workspaceRoot}",
-        "runtimeExecutable": "npm",
-        "windows": {
-            "runtimeExecutable": "npm.cmd"
+    "configurations": [
+
+        {
+            "name": "Nuxt Debug",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "windows": {
+                "runtimeExecutable": "npm.cmd"
+            },
+            "runtimeArgs": ["run", "debug"],
+            "console": "integratedTerminal",
+            "protocol": "auto",
+            "restart": true,
+            "port": 9229,
+            "autoAttachChildProcesses": true
         },
-        "runtimeArgs": ["run", "debug"],
-        "console": "integratedTerminal",
-        "protocol": "auto",
-        "restart": true,
-        "port": 9229,
-        "autoAttachChildProcesses": true
-    }]
+        {
+            "name": "Debug Hare Dev",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "program": "${workspaceRoot}/node_modules/.bin/nuxt",
+            "stopOnEntry": false,
+            "args": ["dev"],
+            "cwd": "${workspaceRoot}",
+            "sourceMaps": true,
+            "env": {
+                "NODE_ENV": "development",
+                "DEBUG": "nuxt:*,app"
+            }
+        }
+    ]
 }

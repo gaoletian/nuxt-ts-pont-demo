@@ -112,6 +112,12 @@ export default {
 		/** 指定对node_modules下的某个package进行编译转换*/
 		// transpile: [/^vuetify/],
 
+		extend(config, options) {
+			return Object.assign({}, config, {
+				devtool: 'source-map'
+			})
+		},
+
 		/** 提取css */
 		// extractCSS: true,
 		// 显示构建分析

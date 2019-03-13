@@ -1,17 +1,9 @@
-import { getModule, Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-module-decorators';
-import { API, apitype } from '~/api';
-const api = <apitype>API;
-
-// @Module({ stateFactory: true })
+import { Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-module-decorators';
+import { api } from '~/api';
 @Module
 export default class extends VuexModule {
-  pets: API.petstore.Pet[] = [];
+  pets: defs.petstore.Pet[] = [];
   currentStatus: 'sold' | 'pending' = 'sold';
-
-  // nuxt call nuxtServerInit only in store/index.ts, so we don't need it here
-  // @Action
-  // async nuxtServerInit(ctx: Nuxt.Context) {
-  // }
 
   @MutationAction
   async getPets(status: any) {

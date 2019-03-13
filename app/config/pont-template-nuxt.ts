@@ -196,7 +196,7 @@ export class FileStructures extends pont.FileStructures {
           return `export * from './${name}/api';`;
         })
         .join('\n')}
-      export as namespace API;
+      export as namespace defs;
     `;
   }
 
@@ -209,10 +209,10 @@ export class FileStructures extends pont.FileStructures {
           return `import { ${name} } from './${name}';`;
         })
         .join('\n')}
-      import ApiType from './api';
+      import defs from './api';
 
-      export type apitype = typeof ApiType;
-      export const API = {${dsNames.join(',')}};
+      export type apitype = typeof defs;
+      export const api = {${dsNames.join(',')}} as apitype;
       
     `;
   }

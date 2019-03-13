@@ -1,6 +1,5 @@
 import { petstore } from './petstore';
-import { petstore2 } from './petstore2';
-import ApiType from './api';
+import defs from './api';
 
-export type apitype = typeof ApiType;
-export const API = { petstore, petstore2 };
+export type apitype = typeof defs;
+export const api = { petstore } as apitype;
