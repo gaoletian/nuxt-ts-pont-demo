@@ -1,6 +1,5 @@
 <script lang="tsx">
 import { Component, Vue, State, Action, namespace } from 'nuxt-property-decorator';
-import { mixins } from 'vue-class-component';
 import { Catch, Throttle } from '~/libs/decorators';
 
 const mod = namespace('home');
