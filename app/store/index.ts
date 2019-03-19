@@ -7,12 +7,12 @@ export default class extends VuexModule {
   // 2. commit and dispath are encapsulated in this.context
   // 3. we can call other action just add await
   @Action
-  nuxtServerInit(ctx: Nuxt.Context) {
+  async nuxtServerInit(ctx: Nuxt.Context) {
     if (!ctx.route || !ctx.route.name) return;
     try {
       // so you do someing  when fist open or page refresh
       // like get user info
-      this.context.dispatch('home/getPets', 'solid');
+      await this.context.dispatch('home/getPets', 'solid');
       return true;
     } catch (err) {}
   }
