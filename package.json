@@ -18,6 +18,7 @@
     "@nuxtjs/babel-preset-app": "^0.8.0",
     "@nuxtjs/component-cache": "^1.1.4",
     "@nuxtjs/proxy": "^1.2.4",
+    "cookie-universal-nuxt": "^2.0.14",
     "nuxt": "^2.4.5"
   },
   "devDependencies": {
