@@ -1,6 +1,9 @@
 import { Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-module-decorators';
 import { api } from '~/api';
-@Module
+@Module({
+  name: 'home',
+  stateFactory: true
+})
 export default class extends VuexModule {
   pets: defs.petstore.Pet[] = [];
   currentStatus: 'sold' | 'pending' = 'sold';
