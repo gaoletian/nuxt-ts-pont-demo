@@ -67,6 +67,7 @@ export default {
 				'^/.*?/api': '/api'
 			}
 		}],
+		'cookie-universal-nuxt',
 		'~/modules/typescript'
 	],
 	/*
