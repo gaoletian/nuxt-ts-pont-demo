@@ -3,6 +3,7 @@ import { Component, Vue, State, Action, namespace } from 'nuxt-property-decorato
 import { Catch, Throttle } from '~/libs/decorators';
 
 const mod = namespace('home');
+const theme = namespace('theme');
 
 @Component({
   layout: 'console',
@@ -10,8 +11,8 @@ const mod = namespace('home');
     // when page first open or refresh call home/getPets Action
     if (!ctx.store.state.home.pets.length) {
       process.server
-        ? await ctx.store.dispatch('home/getPets', 'pending')
-        : ctx.store.dispatch('home/getPets', 'pending');
+        ? await ctx.$storeHelper.action.home.getPets('pending')
+        : ctx.$storeHelper.action.home.getPets('pending');
     }
   }
 })
@@ -19,10 +20,11 @@ export default class HomePage extends Vue {
   @mod.State
   pets: defs.petstore.Pet[];
 
+  @theme.State
+  dark;
+
   @mod.State
   currentStatus;
-
-  @mod.Action getPets: (status: string) => void;
 
   page = 1;
   pageSize = 40;
@@ -40,7 +42,7 @@ export default class HomePage extends Vue {
     const btns = this.status.map(item => {
       const color = this.currentStatus === item ? 'blue' : 'grey';
       return (
-        <v-btn small color={color} dark key={item} round on-click={() => this.getPets(item)}>
+        <v-btn small color={color} dark key={item} round on-click={() => this.$storeHelper.action.home.getPets(item)}>
           {item}
         </v-btn>
       );

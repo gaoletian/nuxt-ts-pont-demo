@@ -17,6 +17,34 @@ type PowerPartial<T> = { [U in keyof T]?: T[U] extends object ? PowerPartial<T[U
  */
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
+
+
+// 拆包
+type Unpacked<T> =
+  T extends (infer U)[] ? U :
+  T extends (...args: any[]) => infer U ? U :
+  T extends Promise<infer U> ? U :
+  T;
+
+type FunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+type FunctionProperties<T> = Pick<T, FunctionPropertyNames<T>>;
+
+type AsyncFunctionPropertyNames<T> = {
+  [K in keyof T]: T[K] extends (...args: any[]) => Promise<any> ? K : never;
+}[keyof T];
+
+type AsyncFunctionProperties<T> = Pick<T, AsyncFunctionPropertyNames<T>>;
+
+/**
+ * MationAction 转换为 Mutation
+ */
+type MutaionAction2Mutation<T> = {
+  [K in keyof T]: Unpacked<T[K]> extends Promise<any>
+  ? (payload: Unpacked<Unpacked<T[K]>>) => void
+  : T[K]
+}
+
+
 /** nuxt 扩展 process */
 declare namespace NodeJS {
   interface Process {

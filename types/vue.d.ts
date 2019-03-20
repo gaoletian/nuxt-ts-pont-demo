@@ -3,7 +3,7 @@ import { Route } from 'vue-router';
 import '@nuxt/vue-app/types';
 import { apitype } from '~/api';
 import { Store } from 'vuex';
-
+import { NuxtCookies } from 'cookie-universal-nuxt';
 interface VuetifyConfirm {
   (msg: string): Promise<boolean>;
   (msg: string, options: { title?: string }): Promise<boolean>;
@@ -15,6 +15,7 @@ declare module 'vue/types/vue' {
     $axios: Nuxt.AxiosInstance;
     $api: apitype;
     $store: Store<any>;
+    $cookies: NuxtCookies;
   }
 }
 
