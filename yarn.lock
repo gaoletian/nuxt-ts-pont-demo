@@ -1829,11 +1829,6 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000918, caniuse-lite@^1.0.30000932, can
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000939.tgz#b9ab7ac9e861bf78840b80c5dfbc471a5cd7e679"
   integrity sha512-oXB23ImDJOgQpGjRv1tCtzAvJr4/OvrHi5SO2vUgB0g0xpdZZoA/BxfImiWfdwoYdUTtQrPsXsvYU/dmCSM8gg==
 
-canvas-datagrid@^0.22.1:
-  version "0.22.9"
-  resolved "https://registry.yarnpkg.com/canvas-datagrid/-/canvas-datagrid-0.22.9.tgz#a1de385338b9c45e0ee1eaa064edc14668285c80"
-  integrity sha512-M83kjf7Sh8Cv0gzDImrSbo0iEFZjwxxVfse3lTxkA/7xV7PMhyn4mEMnj70agXBN8rdJOBbB8+1siPnwbHBxVQ==
-
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
