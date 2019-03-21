@@ -19,7 +19,14 @@ type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 
 
-// 拆包
+/**
+ * 类型拆箱
+ * @example
+ * Unpacked<string>  = string
+ * Unpacked<string[]>  = string
+ * Unpacked<Promise<string>>  = string
+ * Unpacked<(foo: number, bar: number) => string>  = string
+ */
 type Unpacked<T> =
   T extends (infer U)[] ? U :
   T extends (...args: any[]) => infer U ? U :

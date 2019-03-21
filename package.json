@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "debug": "node --inspect node_modules/nuxt/bin/nuxt",
-    "dev": "DEBUG=nuxt:* nuxt",
+    "dev": "DEBUG=nuxt:* PORT=8000 nuxt",
     "build": "nuxt build",
     "generate": "nuxt generate"
   },
@@ -19,6 +19,7 @@
     "@nuxtjs/component-cache": "^1.1.4",
     "@nuxtjs/proxy": "^1.2.4",
     "cookie-universal-nuxt": "^2.0.14",
+    "core-js": "2",
     "nuxt": "^2.4.5"
   },
   "devDependencies": {

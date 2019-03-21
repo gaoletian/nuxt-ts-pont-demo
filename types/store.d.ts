@@ -16,7 +16,9 @@ interface Actions {
 
 interface StoreHelper  {
   action: Actions;
+  act: Actions;
   mutation: Mutations;
+  mut: Mutations;
 }
 
 declare module 'vue/types/vue' {

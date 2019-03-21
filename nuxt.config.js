@@ -1,6 +1,9 @@
 import proxy from './app/config/proxy.config';
 
 export default {
+	server: {
+		port: 8000, // default: 3000
+	},
 	//  nuxt 运行模式 默认支持 ssr
 	mode: 'universal', // spa| universal
 	// 页面切换动画
@@ -73,7 +76,7 @@ export default {
 	/*
 	 ** 插件配置——加载插件在挂载App之前
 	 */
-	plugins: ['~/plugins/apiInject', '~/plugins/vuetify'],
+	plugins: ['~/plugins/apiInject', '~/plugins/storeHelper', '~/plugins/vuetify'],
 
 	/*
 	 ** 服务中间件——只运行于服务端比如 api接口

@@ -1,3 +1,6 @@
+/*
+
+// class mode
 import { Module, Action, VuexModule } from 'vuex-module-decorators';
 
 @Module
@@ -17,3 +20,19 @@ export default class extends VuexModule {
     } catch (err) {}
   }
 }
+*/
+
+
+/**
+ * object mode
+ */
+const actions = {
+  async nuxtServerInit({ dispatch, commit }, ctx: Nuxt.Context) {
+    if (!ctx.route || !ctx.route.name) return;
+    try {
+      // so you do someing  when fist open or page refresh
+      // like get user info
+      // await dispatch('user/load', 'solid');
+    } catch (err) { }
+  }
+};

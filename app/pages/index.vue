@@ -9,11 +9,11 @@ const theme = namespace('theme');
   layout: 'console',
   async asyncData(ctx) {
     // when page first open or refresh call home/getPets Action
-    if (!ctx.store.state.home.pets.length) {
-      process.server
-        ? await ctx.$storeHelper.action.home.getPets('pending')
-        : ctx.$storeHelper.action.home.getPets('pending');
-    }
+    // if (!ctx.store.state.home.pets.length) {
+    //   process.server
+    //     ? await ctx.$storeHelper.action.home.getPets('pending')
+    //     : ctx.$storeHelper.action.home.getPets('pending');
+    // }
   }
 })
 export default class HomePage extends Vue {
@@ -36,17 +36,39 @@ export default class HomePage extends Vue {
   status = ['pending', 'sold'];
 
   // only run at client
-  mounted() {}
+  mounted() {
+    // const {act,mut} = this.$storeHelper
+    // act.home.getPets('sold').then(res => res.pets[0].name);
+    // act.user.loadUser({username: 'abc'}).then(res => res.user.password)
+    
+    // mut.theme.setDark();
+    // mut.home.getPets();
+    // mut.user.loadUser();
+  }
 
   render() {
     const btns = this.status.map(item => {
       const color = this.currentStatus === item ? 'blue' : 'grey';
       return (
-        <v-btn small color={color} dark key={item} round on-click={() => this.$storeHelper.action.home.getPets(item)}>
+        <v-btn small color={color} dark key={item} round on-click={() => this.$storeHelper.action.home.getPets(item as any)}>
           {item}
         </v-btn>
       );
     });
+
+    const storeActions = [
+      <v-btn small  round on-click={ () => this.$storeHelper.mutation.home.getPets({
+        currentStatus: 'sold', pets: [] as any
+        }) }>
+        clear pets
+      </v-btn>,
+      <v-btn small  round on-click={ () => this.$storeHelper.mutation.home.getPets({
+        currentStatus: 'pending', 
+        pets: [{name: 'foo'}, {name: 'bar'}, {name: 'baz'}] as any
+        }) }>
+        call mutation
+      </v-btn>,
+    ]
 
     const pets = this.pets.slice((this.page - 1) * this.pageSize, this.page * this.pageSize).map((pet, index) => {
       const isPic = /^https?:\/\/.+\.(jpe?g|gif|png)$/;
@@ -76,7 +98,10 @@ export default class HomePage extends Vue {
       <v-card flat>
         <v-card-actions>
           <v-layout row class="pt-3">
-            <v-flex xs6>{btns}</v-flex>
+            <v-flex xs6>
+              {btns}
+              {storeActions}
+            </v-flex>
             <v-flex xs6 class="text-xs-right">
               <v-btn small color="pink" round dark on-click={() => this.$nuxt.setLayout(layoutName)}>
                 change layout

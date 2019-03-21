@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosInstance } from 'axios';
-import { Context } from '@nuxt/vue-app/types';
+import { Context } from '@nuxt/vue-app';
 import API from '~/api/api';
 
 /** nuxt axios module */

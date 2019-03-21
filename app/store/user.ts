@@ -3,13 +3,21 @@ import { api } from '~/api';
 
 @Module({ name: 'user', stateFactory: true })
 export default class extends VuexModule {
-  user: defs.petstore.User = {};
+  userInfo: defs.petstore.User = {};
+
+  get email() {
+    return this.userInfo.email
+  }
+
+  get fullName() {
+    return this.userInfo.firstName + ' ' + this.userInfo.lastName
+  }
 
   @MutationAction
   async loadUser(param: defs.petstore.user.getUserByName.Params) {
-    let user = await api.petstore.user.getUserByName.request(param);
+    let userInfo = await api.petstore.user.getUserByName.request(param);
     return {
-      user
+      userInfo
     };
   }
 }

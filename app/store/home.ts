@@ -7,8 +7,11 @@ export default class extends VuexModule {
   pets: defs.petstore.Pet[] = [];
   currentStatus: Status = 'sold';
 
+  foo = 'foo';
+  bar = 'bar';
+
   @MutationAction
-  async getPets(status: string) {
+  async getPets(status: Status) {
     let pets = await api.petstore.pet.findPetsByStatus.request({ status } as any);
     return {
       pets,
