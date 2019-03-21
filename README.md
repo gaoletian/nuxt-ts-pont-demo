@@ -33,6 +33,7 @@ app
 │   └── login.vue                       └── 登陆页
 ├── plugins                         插件目录
 │   ├── apiInject.ts                    ├── api注入插件
+│   ├── storeHelper.ts                  ├── storeHelper注入插件
 │   └── vuetify.ts                      └── vuetify plugin
 ├── static                          静态资源目录,不参与编译，编译时只拷贝到输出目录
 └── store
@@ -115,6 +116,27 @@ export default {
 ### plugins/apiInject.ts
 
 自动将`app/api`注入到 nuxt 上下文, vue 原型及 store，通过 \$api 可以直接调用 api
+
+### plugin/storeHelper.ts
+
+vuex插件扩展，快速调用 `action` 和 `mutation`， 具有良好的智能提醒及类型安全。`$storeHelper` 注入到 nuxt 上下文, vue 原型。
+
+用法： 
+```ts
+// action
+this.$storeHelper.action.home.getPets(payload);
+this.$storeHelper.act.home.getPets(payload);
+// 等同于
+this.$store.dispatch('home/getPets', payload)
+
+
+// mutation
+this.$storeHelper.mutation.theme.setDark()
+this.$storeHelper.mut.theme.setDark()
+// 等同于
+this.$store.commit('theme/setDark')
+
+```
 
 ## 用法举例
 
