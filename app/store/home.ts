@@ -2,8 +2,8 @@ import { Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-modul
 import { api } from '~/api';
 
 type Status = 'sold' | 'pending';
-@Module({ name: 'home', stateFactory: true })
-export default class extends VuexModule {
+@Module({ name: 'Home', stateFactory: true })
+export default class Home extends VuexModule {
   pets: defs.petstore.Pet[] = [];
   currentStatus: Status = 'sold';
 

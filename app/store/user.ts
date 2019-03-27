@@ -1,16 +1,16 @@
 import { Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-module-decorators';
 import { api } from '~/api';
 
-@Module({ name: 'user', stateFactory: true })
-export default class extends VuexModule {
+@Module({ name: 'User', stateFactory: true })
+export default class User extends VuexModule {
   userInfo: defs.petstore.User = {};
 
   get email() {
-    return this.userInfo.email
+    return this.userInfo.email;
   }
 
   get fullName() {
-    return this.userInfo.firstName + ' ' + this.userInfo.lastName
+    return this.userInfo.firstName + ' ' + this.userInfo.lastName;
   }
 
   @MutationAction

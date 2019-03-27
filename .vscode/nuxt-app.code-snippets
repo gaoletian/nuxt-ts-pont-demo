@@ -1,20 +1,25 @@
 {
-	"nuxt-vuex-module": {
-		"prefix": "vuex-module-snippet",
+	"vuex module class snippet": {
+		"prefix": "vuex module class snippet",
 		"body": [
-			"// state",
-			"export const state = () => ({",
-			"})",
-			"// getters",
-			"export const getters = {",
-			"}",
-			"// mutations",
-			"export const mutations = {}",
+			"import { Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-module-decorators';",
+			"import { api } from '~/api';",
 			"",
-			"// actions",
-			"export const actions = {}"
+			"@Module({ name: '${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}', stateFactory: true })",
+			"export default class ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/} extends VuexModule {",
+			"  foo: 'foo'",
+			"  @MutationAction",
+			"  async actionName(payload) {",
+			"    // call api here",
+			"    $0",
+			"    return {",
+			"      foo: 'bar'",
+			"    };",
+			"  }",
+			"}",
+			""
 		],
-		"description": "nuxt-module"
+		"description": "vuex module class snippet"
 	},
 
 	"created hook": {
