@@ -19,8 +19,10 @@ import { Catch } from '~/libs/decorators';
 export default class extends Vue {
   @Catch((ctx, err) => console.log(err))
   async Login() {
+    const { getPets } = this.$storeHelper.mutation.home;
     const res = await this.$api.petstore.user.loginUser.request({ username: 'foo', password: 'bar' });
-    console.log(res);
   }
+
+  doit() {}
 }
 </script>
