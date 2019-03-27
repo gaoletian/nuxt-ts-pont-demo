@@ -71,12 +71,11 @@ export default {
 			}
 		}],
 		'cookie-universal-nuxt',
-		'~/modules/typescript'
 	],
 	/*
 	 ** 插件配置——加载插件在挂载App之前
 	 */
-	plugins: ['~/plugins/apiInject', '~/plugins/storeHelper', '~/plugins/vuetify'],
+	plugins: ['~/plugins/apiInject', '~/plugins/vuetify', '~/plugins/storeHelper', ],
 
 	/*
 	 ** 服务中间件——只运行于服务端比如 api接口
