@@ -1,6 +1,7 @@
 import Home from '~/store/home';
 import Theme from '~/store/theme';
 import User from '~/store/user';
+import { VuexModule } from 'vuex-module-decorators';
 
 interface Mutations {
   home: MutaionAction2Mutation<FunctionProperties<Home>>;
@@ -14,11 +15,16 @@ interface Actions {
   user: AsyncFunctionProperties<User>;
 }
 
-interface StoreHelper  {
+interface Getters {
+  home: Pick<User, ReadonlyKeys<Home>>;
+  theme: Pick<User, ReadonlyKeys<Theme>>;
+  user: Pick<User, ReadonlyKeys<User>>;
+}
+
+interface StoreHelper {
+  getter: Getters;
   action: Actions;
-  act: Actions;
   mutation: Mutations;
-  mut: Mutations;
 }
 
 declare module 'vue/types/vue' {
@@ -27,10 +33,9 @@ declare module 'vue/types/vue' {
   }
 }
 
-
 declare module '@nuxt/vue-app/types/index' {
   // extends Context interface
   interface Context {
-    $storeHelper: StoreHelper
+    $storeHelper: StoreHelper;
   }
 }
