@@ -1,5 +1,4 @@
 // enable middleware you must setup pulgins at nuxt.config.js
-import { mapGetters } from 'vuex';
 export default <Nuxt.Plugin>function(ctx, inject) {
   const storeHelper = {};
   const bindMap = { _actions: 'action', _mutations: 'mutation', getters: 'getter' };
