@@ -119,23 +119,25 @@ export default {
 
 ### plugin/storeHelper.ts
 
-vuex插件扩展，快速调用 `action` 和 `mutation`， 具有良好的智能提醒及类型安全。`$storeHelper` 注入到 nuxt 上下文, vue 原型。
+vuex 插件扩展，快速调用 `action` 和 `mutation`， 具有良好的智能提醒及类型安全。`$storeHelper` 注入到 nuxt 上下文, vue 原型。
 
-用法： 
+用法：
+
 ```ts
 // action
 this.$storeHelper.action.home.getPets(payload);
-this.$storeHelper.act.home.getPets(payload);
 // 等同于
-this.$store.dispatch('home/getPets', payload)
-
+this.$store.dispatch('home/getPets', payload);
 
 // mutation
-this.$storeHelper.mutation.theme.setDark()
-this.$storeHelper.mut.theme.setDark()
+this.$storeHelper.mutation.theme.setDark();
 // 等同于
-this.$store.commit('theme/setDark')
+this.$store.commit('theme/setDark');
 
+// getter
+this.$storeHelper.getter.user.email;
+// 等同于
+this.$store.getters['user/email'];
 ```
 
 ## 用法举例
