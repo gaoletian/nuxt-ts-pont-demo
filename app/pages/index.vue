@@ -50,19 +50,19 @@ export default class HomePage extends Vue {
     const btns = this.status.map(item => {
       const color = this.currentStatus === item ? 'blue' : 'grey';
       return (
-        <v-btn small color={color} dark key={item} round on-click={() => this.$storeHelper.action.home.getPets(item as any)}>
+        <v-btn small color={color} dark key={item} round on-click={() => this.$storeHelper.home.action.getPets(item as any)}>
           {item}
         </v-btn>
       );
     });
 
     const storeActions = [
-      <v-btn small  round on-click={ () => this.$storeHelper.mutation.home.getPets({
+      <v-btn small  round on-click={ () => this.$storeHelper.home.mutation.getPets({
         currentStatus: 'sold', pets: [] as any
         }) }>
         clear pets
       </v-btn>,
-      <v-btn small  round on-click={ () => this.$storeHelper.mutation.home.getPets({
+      <v-btn small  round on-click={ () => this.$storeHelper.home.mutation.getPets({
         currentStatus: 'pending', 
         pets: [{name: 'foo'}, {name: 'bar'}, {name: 'baz'}] as any
         }) }>
