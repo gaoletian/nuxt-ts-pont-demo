@@ -22,7 +22,5 @@ export default class extends Vue {
     const { getPets } = this.$storeHelper.mutation.home;
     const res = await this.$api.petstore.user.loginUser.request({ username: 'foo', password: 'bar' });
   }
-
-  doit() {}
 }
 </script>

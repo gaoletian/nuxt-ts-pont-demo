@@ -3,7 +3,11 @@ import { api } from '~/api';
 
 @Module({ name: 'User', stateFactory: true })
 export default class User extends VuexModule {
-  userInfo: defs.petstore.User = {};
+  userInfo: defs.petstore.User = {
+    email: '',
+    lastName: 'gao',
+    firstName: 'letian'
+  };
 
   get email() {
     return this.userInfo.email;
@@ -11,6 +15,11 @@ export default class User extends VuexModule {
 
   get fullName() {
     return this.userInfo.firstName + ' ' + this.userInfo.lastName;
+  }
+
+  @Mutation
+  clearUser() {
+    this.userInfo = {};
   }
 
   @MutationAction

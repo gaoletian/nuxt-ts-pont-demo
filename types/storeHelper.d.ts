@@ -1,30 +1,48 @@
+/** this file is auto generator , please don't edit it*/
+
 import Home from '~/store/home';
+import DemoCache from '~/store/demo/cache';
+import DemoTask from '~/store/demo/task';
 import Theme from '~/store/theme';
+import Cache from '~/store/cache';
 import User from '~/store/user';
-import { VuexModule } from 'vuex-module-decorators';
-
-interface Mutations {
-  home: MutaionAction2Mutation<FunctionProperties<Home>>;
-  theme: MutaionAction2Mutation<FunctionProperties<Theme>>;
-  user: MutaionAction2Mutation<FunctionProperties<User>>;
-}
-
-interface Actions {
-  home: AsyncFunctionProperties<Home>;
-  theme: AsyncFunctionProperties<Theme>;
-  user: AsyncFunctionProperties<User>;
-}
-
-interface Getters {
-  home: Pick<User, ReadonlyKeys<Home>>;
-  theme: Pick<User, ReadonlyKeys<Theme>>;
-  user: Pick<User, ReadonlyKeys<User>>;
-}
 
 interface StoreHelper {
-  getter: Getters;
-  action: Actions;
-  mutation: Mutations;
+  home: {
+    mutation: MutaionAction2Mutation<FunctionProperties<Home>>;
+    action: AsyncFunctionProperties<Home>;
+    getter: Pick<Home, ReadonlyKeys<Home>>;
+  };
+
+  demo_cache: {
+    mutation: MutaionAction2Mutation<FunctionProperties<DemoCache>>;
+    action: AsyncFunctionProperties<DemoCache>;
+    getter: Pick<DemoCache, ReadonlyKeys<DemoCache>>;
+  };
+
+  demo_task: {
+    mutation: MutaionAction2Mutation<FunctionProperties<DemoTask>>;
+    action: AsyncFunctionProperties<DemoTask>;
+    getter: Pick<DemoTask, ReadonlyKeys<DemoTask>>;
+  };
+
+  theme: {
+    mutation: MutaionAction2Mutation<FunctionProperties<Theme>>;
+    action: AsyncFunctionProperties<Theme>;
+    getter: Pick<Theme, ReadonlyKeys<Theme>>;
+  };
+
+  cache: {
+    mutation: MutaionAction2Mutation<FunctionProperties<Cache>>;
+    action: AsyncFunctionProperties<Cache>;
+    getter: Pick<Cache, ReadonlyKeys<Cache>>;
+  };
+
+  user: {
+    mutation: MutaionAction2Mutation<FunctionProperties<User>>;
+    action: AsyncFunctionProperties<User>;
+    getter: Pick<User, ReadonlyKeys<User>>;
+  };
 }
 
 declare module 'vue/types/vue' {
@@ -34,7 +52,6 @@ declare module 'vue/types/vue' {
 }
 
 declare module '@nuxt/vue-app/types/index' {
-  // extends Context interface
   interface Context {
     $storeHelper: StoreHelper;
   }

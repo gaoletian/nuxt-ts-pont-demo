@@ -52,7 +52,7 @@ export default {
 	 ** 路由配置——可以覆盖nuxt自动生成的路由
 	 */
 	router: {
-		// middleware: ['auth'],
+		// middleware: ['demo'],
 		linkExactActiveClass: 'active'
 	},
 
