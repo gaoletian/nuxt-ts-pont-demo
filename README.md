@@ -125,19 +125,25 @@ vuex 插件扩展，快速调用 `action` 和 `mutation`， 具有良好的智�
 
 ```ts
 // action
-this.$storeHelper.action.home.getPets(payload);
+this.$storeHelper.home.action.getPets(payload);
 // 等同于
 this.$store.dispatch('home/getPets', payload);
 
 // mutation
-this.$storeHelper.mutation.theme.setDark();
+this.$storeHelper.theme.mutation.setDark();
 // 等同于
 this.$store.commit('theme/setDark');
 
 // getter
-this.$storeHelper.getter.user.email;
+this.$storeHelper.user.getter.email;
 // 等同于
 this.$store.getters['user/email'];
+
+// 名字空间嵌套
+this.$storeHelper.demo_cache.mutation.clear()
+// 等同于
+this.$store.commit('demo/cache/clear');
+
 ```
 
 ## 用法举例
