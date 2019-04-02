@@ -121,6 +121,8 @@ export default {
 
 vuex 插件扩展，快速调用 `action` 和 `mutation`， 具有良好的智能提醒及类型安全。`$storeHelper` 注入到 nuxt 上下文, vue 原型。
 
+> 提示： vscode 插件市场搜索 storehelper 安装插件，可以处动生成类型定义文件。https://github.com/gaoletian/storeHelper-vscode
+
 用法：
 
 ```ts
