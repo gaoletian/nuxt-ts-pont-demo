@@ -139,6 +139,14 @@ this.$storeHelper.user.getter.email;
 // 等同于
 this.$store.getters['user/email'];
 
+// state
+this.$storeHelper.user.state.userInfo
+this.$storeHelper.demo_cache.state.foo
+// 等同于
+this.$store.state.user.userInfo
+this.$store.state.demo.user.foo
+
+
 // 名字空间嵌套
 this.$storeHelper.demo_cache.mutation.clear()
 // 等同于
