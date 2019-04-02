@@ -154,7 +154,7 @@ this.$store.commit('demo/cache/clear');
 
 ```
 
-![](2019-04-02-10-46-15.png)
+![](docs/imgs/2019-04-02-10-46-15.png)
 
 ## 用法举例
 

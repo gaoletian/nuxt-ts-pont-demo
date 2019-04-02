@@ -4,14 +4,16 @@ import { Component, Vue, Getter, namespace } from 'nuxt-property-decorator';
   // layout: 'default'
 })
 export default class extends Vue {
+  //@ts-ignore
+  dark = this.$storeHelper.theme.state.dark;
+
   created() {
     this.initUser();
   }
 
   clearUser() {
-    this.$storeHelper.user.mutation.clearUser();
-    this.$storeHelper.user.action.loadUser({username: 'gaoletian'})
-    this.$storeHelper.theme.mutation.setDark()
+    const {theme, user, demo_cache, demo_task, cache} = this.$storeHelper
+    user.mutation.clearUser();
   }
   initUser() {
     const {loadUser} = this.$storeHelper.user.mutation
@@ -19,6 +21,10 @@ export default class extends Vue {
     loadUser({
       userInfo: { email: 'gao@123.com', lastName: 'gao', firstName: 'letian' }
     });
+  }
+
+  test() {
+    this.$storeHelper.demo_cache.mutation.addCache({name: '', data: {}})
   }
 
   render() {
@@ -29,6 +35,9 @@ export default class extends Vue {
       </v-btn>,
       <v-btn small round on-click={this.initUser}>
         initUser
+      </v-btn>,
+      <v-btn small round on-click={this.$storeHelper.theme.mutation.setDark}>
+        dark theme
       </v-btn>
     ];
 

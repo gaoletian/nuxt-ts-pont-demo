@@ -29,12 +29,13 @@ const genDts = (files: string[]) => {
       mutation: MutaionAction2Mutation<FunctionProperties<${className}>>;
       action: AsyncFunctionProperties<${className}>;
       getter: Pick<${className}, ReadonlyKeys<${className}>>;
+      state: Omit<${className}, (keyof VuexModule) | FunctionPropertyNames<${className}> | ReadonlyKeys<${className}>>;
     };
     `);
   });
 
   return `/** this file is auto generator , please don't edit it*/
-
+import {VuexModule} from 'vuex-module-decorators';
 ${importCode.join('\n')}
 
 interface StoreHelper {

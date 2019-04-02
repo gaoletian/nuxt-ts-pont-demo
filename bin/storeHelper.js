@@ -21,9 +21,9 @@ var genDts = function (files) {
         // 转换 namespace 为 snake_case
         var namespace = _.snakeCase(className);
         importCode.push("import " + className + " from '~/" + importpath + "'");
-        modules.push("\n    " + namespace + " : {\n      mutation: MutaionAction2Mutation<FunctionProperties<" + className + ">>;\n      action: AsyncFunctionProperties<" + className + ">;\n      getter: Pick<" + className + ", ReadonlyKeys<" + className + ">>;\n    };\n    ");
+        modules.push("\n    " + namespace + " : {\n      mutation: MutaionAction2Mutation<FunctionProperties<" + className + ">>;\n      action: AsyncFunctionProperties<" + className + ">;\n      getter: Pick<" + className + ", ReadonlyKeys<" + className + ">>;\n      state: Omit<" + className + ", (keyof VuexModule) | FunctionPropertyNames<" + className + "> | ReadonlyKeys<" + className + ">>;\n    };\n    ");
     });
-    return "/** this file is auto generator , please don't edit it*/\n\n" + importCode.join('\n') + "\n\ninterface StoreHelper {\n  " + modules.join('\n') + "\n}\n\ndeclare module 'vue/types/vue' {\n  interface Vue {\n    $storeHelper: StoreHelper;\n  }\n}\n\ndeclare module '@nuxt/vue-app/types/index' {\n  interface Context {\n    $storeHelper: StoreHelper;\n  }\n}\n";
+    return "/** this file is auto generator , please don't edit it*/\nimport {VuexModule} from 'vuex-module-decorators';\n" + importCode.join('\n') + "\n\ninterface StoreHelper {\n  " + modules.join('\n') + "\n}\n\ndeclare module 'vue/types/vue' {\n  interface Vue {\n    $storeHelper: StoreHelper;\n  }\n}\n\ndeclare module '@nuxt/vue-app/types/index' {\n  interface Context {\n    $storeHelper: StoreHelper;\n  }\n}\n";
 };
 var changedfile = normalize([
     'store/index.ts',

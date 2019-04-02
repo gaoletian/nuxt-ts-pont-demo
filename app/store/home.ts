@@ -8,7 +8,6 @@ export default class Home extends VuexModule {
   currentStatus: Status = 'sold';
 
   foo = 'foo';
-  bar = 'bar';
 
   @MutationAction
   async getPets(status: Status) {

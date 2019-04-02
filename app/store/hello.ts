@@ -1,17 +1,16 @@
 import { Module, Mutation, MutationAction, Action, VuexModule } from 'vuex-module-decorators';
 import { api } from '~/api';
 
-@Module({ name: 'Task', stateFactory: true })
-export default class Task extends VuexModule {
+@Module({ name: 'Hello', stateFactory: true })
+export default class Hello extends VuexModule {
   foo = 'foo'
-  bar = 'bar'
 
   @MutationAction
-  async addTask(payload) {
+  async actionName(payload) {
     // call api here
     
     return {
-      foo: 'bar'
+      foo: 'bar12'
     };
   }
 }
