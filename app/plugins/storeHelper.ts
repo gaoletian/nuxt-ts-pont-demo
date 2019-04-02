@@ -1,34 +1,51 @@
 // enable middleware you must setup pulgins at nuxt.config.js
+
+
+const getState = (obj: object, paths: string | string[]) => {
+  let _paths = paths;
+  typeof _paths === 'string' && (_paths = _paths.split('/')) && _paths.pop();
+  return _paths.length === 1 ? obj[_paths[0]] : getState(obj[_paths[0]], _paths.slice(1));
+}
+
 export default <Nuxt.Plugin>function(ctx, inject) {
   const storeHelper = {};
-  const bindMap = { _actions: 'action', _mutations: 'mutation', getters: 'getter' };
-
+  const bindMap = { action: '_actions', mutation: '_mutations', getter: 'getters', state: '_modulesNamespaceMap' };
+  
   Object.keys(bindMap).forEach(bindType => {
-    Object.keys(ctx.store[bindType]).forEach(bindTypeItemKey => {
+    Object.keys(ctx.store[bindMap[bindType]]).forEach(bindTypeItemKey => {
       let paths = bindTypeItemKey.split('/');
-      const namespace = paths.slice(0, paths.length -1).join('_');
+      const namespace = paths.slice(0, paths.length - 1).join('_');
       const keyName = paths.slice(-1)[0];
 
       // {user: {}, demo_cache: {}}
       !storeHelper[namespace] && (storeHelper[namespace] = {});
       // {user: {action: {}}, demo_cache: {action: {}}}
-      !storeHelper[namespace][bindMap[bindType]] && (storeHelper[namespace][bindMap[bindType]] = {});
+      !storeHelper[namespace][bindType] && (storeHelper[namespace][bindType] = {});
       switch (bindType) {
-        case '_actions':
-          storeHelper[namespace][bindMap[bindType]][keyName] = (payload, option) =>
+        case 'action':
+          storeHelper[namespace][bindType][keyName] = (payload, option) =>
             ctx.store.dispatch(bindTypeItemKey, payload, option);
           break;
-        case '_mutations':
-          storeHelper[namespace][bindMap[bindType]][keyName] = (payload, option) =>
+        case 'mutation':
+          storeHelper[namespace][bindType][keyName] = (payload, option) =>
             ctx.store.commit(bindTypeItemKey, payload, option);
           break;
-        case 'getters':
-          Object.defineProperty(storeHelper[namespace][bindMap[bindType]], keyName, {
+        case 'getter':
+          Object.defineProperty(storeHelper[namespace][bindType], keyName, {
             get: function() {
               return ctx.store.getters[bindTypeItemKey];
+            }
+          });
+          break;
+        case 'state':
+          Object.defineProperty(storeHelper[namespace], bindType, {
+            get() {
+              return getState(ctx.store.state, bindTypeItemKey);
             },
-            enumerable: true,
-            configurable: false
+            // set() {
+            //   // todo commit a setState mutation 
+            //   console.log('====>', 'Not implemented')
+            // }
           });
           break;
       }
