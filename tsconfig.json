@@ -37,5 +37,8 @@
       "@types/node",
       "@nuxt/vue-app"
     ]
-  }
+  },
+  "exclude": [
+    "app/config/pont-template-nuxt.ts"
+  ]
 }
