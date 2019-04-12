@@ -18,7 +18,7 @@
     "@nuxtjs/component-cache": "^1.1.4",
     "@nuxtjs/proxy": "^1.2.4",
     "cookie-universal-nuxt": "^2.0.14",
-    "nuxt": "^2.5.1"
+    "nuxt": "^2.6.1"
   },
   "devDependencies": {
     "core-js": "^2.6.5",
