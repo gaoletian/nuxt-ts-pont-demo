@@ -10,12 +10,6 @@ type PlainObject = { [key: string]: any };
  * type EggConfig = PowerPartial<EggAppConfig>
  */
 type PowerPartial<T> = { [U in keyof T]?: T[U] extends object ? PowerPartial<T[U]> : T[U] };
-/**
- * Omit, Support adding ? modifier to a mapped property in deep level
- * // { view: { defaultEngines: string } } => { view?: { defaultEngines?: string } }
- * type EggConfig = PowerPartial<EggAppConfig>
- */
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 /**
  * 类型拆箱
@@ -43,13 +37,13 @@ type AsyncFunctionProperties<T> = Pick<T, AsyncFunctionPropertyNames<T>>;
  * MationAction 转换为 Mutation
  */
 type MutaionAction2Mutation<T> = {
-  [K in keyof T]: Unpacked<T[K]> extends Promise<any> ? (payload: Unpacked<Unpacked<T[K]>>) => void : T[K]
+  [K in keyof T]: Unpacked<T[K]> extends Promise<any> ? (payload: Unpacked<Unpacked<T[K]>>) => void : T[K];
 };
 
 type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? A : B;
 
 type ReadonlyKeys<T> = {
-  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>
+  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>;
 }[keyof T];
 
 /** nuxt 扩展 process */
