@@ -10,16 +10,18 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator';
 import { Catch } from '~/libs/decorators';
+import { expect200 } from '~/libs/assert';
 
 @Component({
   layout: 'console',
   name: 'login-page',
-  auth: false
+  auth: false,
 })
 export default class extends Vue {
-  @Catch((ctx, err) => console.log(err))
+  @Catch((vm, err) => vm.$confirm('登陆失败'))
   async Login() {
     const res = await this.$api.petstore.user.loginUser.request({ username: 'foo', password: 'bar' });
+    expect200;
   }
 }
 </script>
