@@ -1,9 +1,6 @@
 <script lang="tsx">
-import { Component, Vue, State, Action, namespace } from 'nuxt-property-decorator';
+import { Component, Vue, State, Action } from 'nuxt-property-decorator';
 import { Catch, Throttle } from '~/libs/decorators';
-
-const mod = namespace('home');
-const theme = namespace('theme');
 
 @Component({
   layout: 'console',
@@ -14,63 +11,69 @@ const theme = namespace('theme');
     //     ? await ctx.$storeHelper.action.home.getPets('pending')
     //     : ctx.$storeHelper.action.home.getPets('pending');
     // }
-  }
+  },
 })
 export default class HomePage extends Vue {
-  @mod.State
-  pets: defs.petstore.Pet[];
-
-  @theme.State
-  dark;
-
-  @mod.State
-  currentStatus;
+  get share() {
+    const { currentStatus, pets } = this.$storeHelper.home.state;
+    const { dark } = this.$storeHelper.theme.state;
+    return { currentStatus, pets, dark };
+  }
 
   page = 1;
   pageSize = 40;
 
   get pageCount() {
-    return Math.ceil(this.pets.length / this.pageSize);
+    return Math.ceil(this.share.pets.length / this.pageSize);
   }
 
   status = ['pending', 'sold'];
 
   // only run at client
-  mounted() {
-    // const {act,mut} = this.$storeHelper
-    // act.home.getPets('sold').then(res => res.pets[0].name);
-    // act.user.loadUser({username: 'abc'}).then(res => res.user.password)
-    
-    // mut.theme.setDark();
-    // mut.home.getPets();
-    // mut.user.loadUser();
-  }
+  mounted() {}
 
   render() {
     const btns = this.status.map(item => {
-      const color = this.currentStatus === item ? 'blue' : 'grey';
+      const color = this.share.currentStatus === item ? 'blue' : 'grey';
       return (
-        <v-btn small color={color} dark key={item} round on-click={() => this.$storeHelper.home.action.getPets(item as any)}>
+        <v-btn
+          small
+          color={color}
+          dark
+          key={item}
+          round
+          on-click={() => this.$storeHelper.home.action.getPets(item as any)}>
           {item}
         </v-btn>
       );
     });
 
     const storeActions = [
-      <v-btn small  round on-click={ () => this.$storeHelper.home.mutation.getPets({
-        currentStatus: 'sold', pets: [] as any
-        }) }>
+      <v-btn
+        small
+        round
+        on-click={() =>
+          this.$storeHelper.home.mutation.getPets({
+            currentStatus: 'sold',
+            pets: [] as any,
+          })
+        }>
         clear pets
       </v-btn>,
-      <v-btn small  round on-click={ () => this.$storeHelper.home.mutation.getPets({
-        currentStatus: 'pending', 
-        pets: [{name: 'foo'}, {name: 'bar'}, {name: 'baz'}] as any
-        }) }>
+      <v-btn
+        small
+        round
+        on-click={() =>
+          this.$storeHelper.home.mutation.getPets({
+            currentStatus: 'pending',
+            pets: [{ name: 'foo' }, { name: 'bar' }, { name: 'baz' }] as any,
+          })
+        }>
         call mutation
       </v-btn>,
-    ]
+    ];
 
-    const pets = this.pets.slice((this.page - 1) * this.pageSize, this.page * this.pageSize).map((pet, index) => {
+    const pets = this.share.pets.slice((this.page - 1) * this.pageSize, this.page * this.pageSize).map((pet, index) => {
       const isPic = /^https?:\/\/.+\.(jpe?g|gif|png)$/;
       const photoUrls =
         pet.photoUrls && pet.photoUrls.length && isPic.test(pet.photoUrls[0])
