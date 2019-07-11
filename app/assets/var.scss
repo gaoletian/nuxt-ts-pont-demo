@@ -1,0 +1,6 @@
+$animation-length: 250;
+$animation-length-ms: $animation-length+0ms;
+
+:export {
+  animationMillis: $animation-length-ms;
+}
