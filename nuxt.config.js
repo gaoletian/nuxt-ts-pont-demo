@@ -134,6 +134,14 @@ export default {
     // 显示构建分析
     analyze: process.env.NODE_ENV === 'production',
 
+    loaders: {
+      // sass-loader option use sass replace node-saa
+      // https://github.com/sass/node-sass/issues/2632
+      scss: {
+        implementation: require('sass'),
+      },
+    },
+
     bable: {
       presets: [
         [
